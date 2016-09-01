@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Progressive Web Apps</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style>
+		.dimmest .backgrounds {
+			-webkit-filter: opacity(10%);
+			-moz-filter: opacity(10%);
+			-o-filter: opacity(10%);
+			-ms-filter: opacity(10%);
+			filter: opacity(10%);
+		}
+
+		.dim .backgrounds {
+			-webkit-filter: opacity(30%);
+			-moz-filter: opacity(30%);
+			-o-filter: opacity(30%);
+			-ms-filter: opacity(30%);
+			filter: opacity(30%);
+		}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
+					What has the web ever done for us?
+					<section>Nothing
+						<aside class="notes">
+							As a mobile developer these days we tend to think of native apps as the gold standard,
+							with a mobile web app as a fallback - responsive design if you're lucky, or just dump
+							them onto the desktop site if not. You've just got to have a native app if you want to
+							give the user the best experience.
+						</aside>
+					</section>
+					<section>Well, there's links
+						<aside class="notes">
+							Links are the web's superpower, they're what made it great. They are still how a large
+							percentage of traffic makes it to most sites - people sharing links, not through facebook
+							or other trackable means, but by emails to friends or instant messages. It's been called
+							"Dark Social".
+							http://www.theatlantic.com/technology/archive/2012/10/dark-social-we-have-the-whole-history-of-the-web-wrong/263523/
+
+							Clicking on links on a mobile device is a delightful journey into install-the-native-app
+							popup begging. Remember the good old days when clicking on a link took you to the content
+							you wanted?
+						</aside>
+					</section>
+					<section>...and searching
+						<aside class="notes">
+							Being able to find your app in the store relies on the user typing in pretty much your app's
+							exact name. So they already have to know about you and that your app exists. Unless you can get
+							on the front page of the app store, or into the top 10 list for a category.
+
+							On the web, they're used to just typing in vaguely what they want and having Google's mind-reading
+							satellites pick out what they really wanted. And apps don't turn up much in the results - unless you
+							pay for those ads.
+						</aside>
+					</section>
+					<section>...and freedom from walled gardens
+						<aside class="notes">
+							It's up to Apple/Google/Amazon if your app makes it into the store, and it's up to them when that happens as well.
+
+							The web has no such restrictions, it's totally open. Anyone can put a site up, and link to whatever
+							they want. They can be indexed by search engines in a day or two, and suddenly www.goatprices.com is
+							making money.
+						</aside>
+					</section>
+					<section>But apart from that?</section>
+					<section>Nothing.</section>
+				</section>
+				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
+					Native apps
+					<section>...are totally sweet.
+						<aside class="notes">
+							Originally, the move to native over web was for performance.
+							Your UI was slicker, you bundled up a lot of the furniture so that
+							the user didn't have to download background images, etc. It was all
+							about reducing the time to first interaction.
+						</aside>
+					</section>
+					<section>Rad.
+						<aside class="notes">
+							You got access to all the hardware features, could do some great things.
+						</aside>
+					</section>
+					<section>Perhaps, if I may be so bold, fully sick.
+						<aside class="notes">
+							You also got push notifications which are awesome for keeping your users
+							coming back for more. When they're done correctly.
+						</aside>
+					</section>
+					<section>You should install one now.</section>
+					<section><img src="images/trip-advisor-1.png"/></section>
+					<section><img src="images/trip-advisor-2.png"/></section>
+					<section>Never mind what you came here to do in the first place.</section>
+					<section><img src="images/trip-advisor-3.png"/></section>
+					<section data-background-image="images/dalek.jpg" data-state="dimmest">Install</section>
+					<section><img src="images/trip-advisor-4.png"/></section>
+					<section data-background-image="images/dalek.jpg" data-state="dim">INSTALL</section>
+					<section><img src="images/trip-advisor-5.png"/></section>
+					<section data-background-image="images/dalek.jpg">
+						<h2>INSTALL!</h2>
+						<p><cite><a href="https://commons.wikimedia.org/wiki/File:Dalek_(Dr_Who).jpg">Dalek image courtesy of Tony Hisgett</a></cite></p>
+					</section>
+					<section>Barriers</section>
+					<section>
+						Every step between your users and installing your app loses you 20% of them.
+						<aside class="notes">
+							Every barrier you put between the user and their goal will lose you about 20% of your audience.
+							That sounds like I just made that statistic up, but I didn't. Someone else did.
+							This is because your customer's goal (finding out about goat prices) is different to yours
+							(getting them to install your app).
+						</aside>
+					</section>
+					<section>
+						<img src="images/mobile_funnel.png"/>
+						<p><cite><a href="http://blog.gaborcselle.com/2012/10/every-step-costs-you-20-of-users.html">Gabor Cselle</a></cite></p>
+					</section>
+					<section>Most people don't install apps
+						<img src="images/app-installs.png"/>
+						<p><cite><a href="http://qz.com/253618/most-smartphone-users-download-zero-apps-per-month/">http://qz.com/253618</a></cite></p>
+						<aside class="notes">
+							Two-thirds of smartphone users install zero apps per month. They've got a handful of apps
+							that they use for most purposes. In fact, 42% of app time happens in just one app.
+						</aside>
+					</section>
+				</section>
+				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
+					PWAs
+					<section>If only there was another way
+						<aside class="notes">
+							Progressive web apps are made up of a few reasonably simple technologies that can be used to
+							enhance the mobile experience for users with browsers that support those technologies. The
+							progressive part of the name comes from progressive enhancement, with the idea that these
+							functions are extra bits. Your web app will still work without them.
+						</aside>
+					</section>
+					<section>Time to first interaction
+						<aside class="notes">
+							Service workers allow you to cache an app skeleton, so that your mobile app is
+							ready to go much sooner than a normal web app. Your service worker acts as a
+							proxy allowing you to intercept http requests made by your page, and decide to
+							serve them from a cache or not.
+						</aside>
+					</section>
+					<section>Getting onto the home screen
+						<aside class="notes">
+							Bypass all that tedious app store nonsense by using manifests to tell the browser that your site
+							is installable.
+						</aside>
+					</section>
+					<section>Push notifications
+						<aside class="notes">
+							If you've done the work to get a service worker and manifest on your site, then you're just a short
+							step away from getting push notifications for your site as well.
+						</aside>
+					</section>
+				</section>
+				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
+					Service Workers
+					<section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
