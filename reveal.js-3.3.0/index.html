@@ -179,7 +179,89 @@
 				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
 					Service Workers
 					<section>
+						<a href="https://nomiddlename.github.io/pow/">https://nomiddlename.github.io/pow/ - demo site</a>
+					</section>
+					<section>
+						1. HTTPS only (localhost counts as secure)
+						<aside class="notes">
+							This is part of Google's move to prefer secure origins for new features. And service workers allow
+							you to intercept any http request made on the page, so that's pretty powerful.
 
+							http://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features
+						</aside>
+					</section>
+					<section>
+						2. Let the browser know about the service worker.
+					</section>
+					<section>
+						<img src="images/sw-1.png"/>
+					</section>
+					<section>
+						<img src="images/sw-2.png"/>
+						<aside class="notes">
+							Note that sw.js is in the root of the site - you can't ask for a higher
+							level of scope, but you can ask for less. The API also uses promises.
+
+							That call to "register" loads the service worker, and triggers an "install" event.
+						</aside>
+					</section>
+					<section>
+						<img src="images/sw-3.png"/>
+						<aside class="notes">
+							Here you can see I'm setting up a cache, and adding some files to it for later on.
+							At this point the sw is not running, that doesn't happen until you get the "activate" event.
+						</aside>
+					</section>
+					<section>
+						<img src="images/sw-4.png"/>
+						<aside class="notes">
+							Here we're clearing out old caches that we don't need any more.
+
+							For here on, our service worker is running in the background. Not doing anything, but it's there.
+						</aside>
+					</section>
+					<section>
+						<img src="images/sw-5.png"/>
+						<aside class="notes">
+							To intercept requests, and behave like a proxy, we have to listen for the "fetch" event.
+
+							event 'e' has a property 'request' which the Cache API can use a key for storing responses.
+						</aside>
+					</section>
+					<section>
+						<img src="images/sw-6.png"/>
+						<aside class="notes">
+							Now, when we click onto another page, we get this.
+						</aside>
+					</section>
+					<section>
+						<img src="images/sw-7.png"/>
+						<aside class="notes">
+							That's because we had this list of files in that "install" event at the start.
+
+							You’ll have noticed code in the “activate” event handler that deletes old caches.
+							When we want to update our components, we bump the cache version number, reload the
+							page - the new service worker will become active and the old one deleted, and our
+							cache replaced with a new one. Caveat: filling the service worker cache will make
+							use of the browser cache, so if it doesn’t look like your pages are updating, then
+							check that as well - it fooled me for a while, I was convinced my service worker was
+							broken. I also thought this would be a great replacement for all those little
+							cache-busting tricks we do. You could use this as a central place to manage script
+							updates - but this fallback to the browser cache means you’d still need to include the
+							cache-busting. But at least you’d have one place to do all your cache-busting.
+
+							Memory limits - I couldn’t find anything which states exactly what the limits are.
+							They’re browser-specific, and the spec states that the whole cache will be deleted
+							if limits are reached, rather than piecemeal. Some suggest the limit is 5MB, shared
+							amongst local storage, indexed db, cache.
+						</aside>
+					</section>
+					<section>
+						Don't use my dodgy code.
+						<p><a href="https://github.com/GoogleChrome/sw-precache">sw-precache (https://github.com/GoogleChrome/sw-precache)</a></p>
+						<p><a href="https://googlechrome.github.io/sw-toolbox/">sw-toolbox (https://googlechrome.github.io/sw-toolbox/)</a></p>
+					</section>
+				</section>
 			</div>
 		</div>
 
