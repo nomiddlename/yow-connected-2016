@@ -270,27 +270,61 @@
 				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
 					Manifests
 					<section>
-						Link in the header to your json file
+						Makes your app installable.
+						<aside class="notes">
+							There are other ways to do this, using AppCache and lots of meta tags. AppCache
+							is difficult to work with, and Chrome is deprecating support for it in favour of
+							manifests and PWAs.
+						</aside>
 					</section>
 					<section>
-						JSON manifest
+						<img src="images/manifest-1.png">
+					</section>
+					<section>
+						<pre><code data-trim>
+{
+  "name": "POW! Conference 2016",
+  "short_name": "POW! 2016",
+  "start_url": "/pow/",
+  "display": "standalone",
+  "background_color": "white",
+  "description": "Schedules and speakers for the exciting POW! Conference 2016",
+  "icons": [
+    { "src": "images/logo.png", "sizes": "192x192", "type": "image/png" }
+  ]
+}
+						</code></pre>
 						<aside class="notes">
-							can set a few properties relating to colours, titles, preferred orientation, start page
-							<!-- TODO: check if that install banner is controlled from here anyway -->
+							Can set a few properties relating to colours, titles, preferred orientation, start page.
+							Important parts are "short_name", "start_url", and at least one icon.
 						</aside>
 					</section>
 					<section>
 						When do you get to install?
 						<aside class="notes">
-							Having a manifest triggers a few rules in Chrome.
+							Will be used if someone presses the "add to home screen" button, but there are
+							also a few conditions under which Chrome will show the install banner without
+							prompting.
 						</aside>
 					</section>
 					<section>
-						Insert chrome rules here.
-						<aside class="notes">
-							Something like: have to have visited more than twice, with 5 minutes in between;
-							has to have a service worker?
-						</aside>
+						<ul>
+							<li>HTTPS + Service Worker</li>
+							<li>Manifest with "short_name", "start_url", and an icon</li>
+							<li>User visits at least twice, with at least 5 mins between</li>
+						</ul>
+					</section>
+					<section>
+						<img src="images/manifest-2.png">
+					</section>
+					<section>
+						<img src="images/manifest-3.png">
+					</section>
+					<section>
+						<img src="images/manifest-4.png">
+					</section>
+					<section>
+						<img src="images/manifest-5.png">
 					</section>
 					<section>
 						Annoying?
@@ -307,7 +341,8 @@
 						<aside class="notes">
 							Yay, those boffins in the browser labs have thought of that. Listen for the
 							beforeinstallprompt event and you can choose to stop it from triggering
-							and save it for later.
+							and save it for later. You only get one shot at this though - if the user
+							declines to install, they won't be asked again until they clear their browser cache.
 						</aside>
 					</section>
 				</section>
@@ -317,9 +352,13 @@
 						More likely to convert
 						<aside class="notes">
 							A user that has received a timely, relevant push notification is something-something more likely
-							to convert into a sale or evolve into a charizard or something. There's an article in your
-							reading list somewhere, Jones.
+							to convert into a sale or evolve into a charizard or something. I was going to show some quotes
+							here from case studies that show 20% click-through rates on push notifications on various sites.
+							Instead I'm going to show you something a bit more personal, and I hope familiar to some of you.
 						</aside>
+					</section>
+					<section>
+						<img src="images/push-notification-1.png">
 					</section>
 					<section>
 						Ask for permission
