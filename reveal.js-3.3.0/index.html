@@ -361,22 +361,65 @@
 						<img src="images/push-notification-1.png">
 					</section>
 					<section>
-						Ask for permission
+						1. Ask for permission
 						<aside class="notes">
 							Choose a good moment to ask the user. Not when they first turn up.
 						</aside>
 					</section>
 					<section>
-						Screenshot of the "asking for permission" code
+						<img src="images/push-notification-2.png">
+						<aside class="notes">I've added a button to the programme page here.</aside>
 					</section>
 					<section>
-						Register for push events
+						<img src="images/push-notification-3.png">
+						<aside class="notes">Clicking that button triggers the browser's permission popup</aside>
 					</section>
 					<section>
-						Send one
+						<img src="images/push-notification-4.png">
+						<aside class="notes">
+							Here I'm printing out to the console what we get back from a
+							successful subscription. Three things that we need: endpoint, public key, and auth key.
+						</aside>
 					</section>
 					<section>
-						Receive
+						<img src="images/push-notification-5.png">
+						<aside class="notes">Here's the code for that .</aside>
+					</section>
+					<section>
+						2. Send a message
+					</section>
+					<section>
+						<img src="images/push-notification-6.png">
+						<aside class="notes">
+							Using node web-push library, but there are lots of others.
+							There's some fiddly encryption you have to do, so it's best to just use a library.
+							Note the three things that came from the browser, and the json payload.
+						</aside>
+					</section>
+					<section>
+						3. Receive the message
+					</section>
+					<section>
+						<img src="images/push-notification-7.png">
+						<aside class="notes">
+							Listen for the push event, display a notification.
+							The notification API allows you to add action buttons, and it returns a promise so
+							you can see which buttons were pressed.
+						</aside>
+					</section>
+					<section>
+						<img src="images/push-notification-8.png">
+						<aside class="notes">Message received.</aside>
+					</section>
+					<section>
+						Complications
+						<aside class="notes">
+							I chose Firefox for the demo here because their implementation is nice and simple.
+							The browser needs to be running for the notifications to be picked up, otherwise they
+							queue up and get picked up when the browser starts up. 
+							To get this to work on Chrome, or an Android device, you'll need to set up a
+							GCM project. The web-push libraries handle a lot of the details for you.
+						</aside>
 					</section>
 				</section>
 				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
