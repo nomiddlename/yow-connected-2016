@@ -416,7 +416,7 @@
 						<aside class="notes">
 							I chose Firefox for the demo here because their implementation is nice and simple.
 							The browser needs to be running for the notifications to be picked up, otherwise they
-							queue up and get picked up when the browser starts up. 
+							queue up and get picked up when the browser starts up.
 							To get this to work on Chrome, or an Android device, you'll need to set up a
 							GCM project. The web-push libraries handle a lot of the details for you.
 						</aside>
@@ -431,7 +431,14 @@
 						Android - two thumbs up
 					</section>
 					<section>
-						List of APIs and ticks next to them (sw, cache, indexeddb, push notifications, manifest)
+						<ul>
+							<li>Service-workers &check;</li>
+							<li>Push notifications &check;</li>
+							<li>Manifest &check;</li>
+							<li>Cache &check;</li>
+							<li>Fetch &check;</li>
+							<li>IndexedDB &check;</li>
+						</ul>
 					</section>
 					<section>
 						iOS
@@ -446,38 +453,73 @@
 						</aside>
 					</section>
 					<section>
-						List of APIs and crosses / caveats
+						<ul>
+							<li>Service-workers &cross;</li>
+							<li>Push notifications &cross;</li>
+							<li>Manifest &cross;</li>
+							<li>Cache &cross;</li>
+							<li>Fetch &cross;</li>
+							<li>IndexedDB - maybe</li>
+						</ul>
 					</section>
 				</section>
 				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
 					When should we use PWAs?
 					<section>
 						Anything where your business model does not involve selling your app in a store
+						<aside class="notes">
+							This one is pretty obvious - you're going to bypass the app stores.
+
+							An ecommerce site is perfect - nobody wants to install an app just to buy something,
+							but if you've got repeat customers, they're going to be given the option of installing
+							your PWA to their homepage, and you can ask nicely if they want push notifications.
+						</aside>
 					</section>
 					<section>
 						If you've got a mobile site, but don't know if you want a native one.
+						<aside class="notes">
+							You can improve the performance of your mobile site through the use
+							of service workers to cache data. Add a manifest to get the installable
+							feature. Adding push notifications is probably a little bit more work,
+							but still less than making a full Android app.
+
+							I used to work for A&amp;R Bookworld - they had a mobile site, but no apps.
+							This was because most of their traffic came from Google: searches, or ad words.
+							Nobody wants to install your app if they're looking for a cheap book, so
+							there's no benefit in them developing apps.
+						</aside>
 					</section>
 					<section>
-						You don't want to have to implement another "INSTALL" popup.
+						You never want to have to implement another "INSTALL" popup.
 					</section>
 				</section>
 				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
 					Homework
 					<section>
-						Offline-first udacity course
+						<a href="https://www.udacity.com/course/offline-web-applications--ud899">Offline-first - Udacity</a>
 					</section>
 					<section>
-						Google's developer pages
+						<a href="https://developers.google.com/web/fundamentals/?hl=en">Google's developer pages</a>
 					</section>
 					<section>
-						People to follow
-						Alex Russell, Jake Archibald, Addy Osmani
+						<a href="https://serviceworke.rs">serviceworke.rs - Cookbook of SW examples</a>
+					</section>
+					<section>
+						<a href="https://jakearchibald.github.io/isserviceworkerready/index.html">isserviceworkerready?</a>
+					</section>
+					<section>
+						People to follow<br>
+						Alex Russell - <a href="https://twitter.com/slightlylate">@slightlylate</a><br>
+						Addy Osmani - <a href="https://twitter.com/addyosmani">@addyosmani</a><br>
+						Jake Archibald - <a href="https://twitter.com/jaffathecake">@jaffathecake</a><br>
 					</section>
 				</section>
-				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
+				<section data-background-image="images/lone-ranger.jpg" data-background-position="right" data-state="dim">
 					Who was that masked man?
 					<section>
-						Troy McClure
+						Gareth Jones<br>
+						<a href="https://twitter.com/nomiddlename">@nomiddlename</a><br>
+						<a href="http://www.shinesolutions.com">Shine Solutions</a>
 					</section>
 				</section>
 			</div>
