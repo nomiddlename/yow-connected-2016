@@ -42,91 +42,111 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
-					What has the web ever done for us?
-					<section>Nothing
-						<aside class="notes">
-							As a mobile developer these days we tend to think of native apps as the gold standard,
-							with a mobile web app as a fallback - responsive design if you're lucky, or just dump
-							them onto the desktop site if not. You've just got to have a native app if you want to
-							give the user the best experience.
-						</aside>
-					</section>
-					<section>Well, there's links
-						<aside class="notes">
-							Links are the web's superpower, they're what made it great. They are still how a large
-							percentage of traffic makes it to most sites - people sharing links, not through facebook
-							or other trackable means, but by emails to friends or instant messages. It's been called
-							"Dark Social".
-							http://www.theatlantic.com/technology/archive/2012/10/dark-social-we-have-the-whole-history-of-the-web-wrong/263523/
-
-							Clicking on links on a mobile device is a delightful journey into install-the-native-app
-							popup begging. Remember the good old days when clicking on a link took you to the content
-							you wanted?
-						</aside>
-					</section>
-					<section>...and searching
-						<aside class="notes">
-							Being able to find your app in the store relies on the user typing in pretty much your app's
-							exact name. So they already have to know about you and that your app exists. Unless you can get
-							on the front page of the app store, or into the top 10 list for a category.
-
-							On the web, they're used to just typing in vaguely what they want and having Google's mind-reading
-							satellites pick out what they really wanted. And apps don't turn up much in the results - unless you
-							pay for those ads.
-						</aside>
-					</section>
-					<section>...and freedom from walled gardens
-						<aside class="notes">
-							It's up to Apple/Google/Amazon if your app makes it into the store, and it's up to them when that happens as well.
-
-							The web has no such restrictions, it's totally open. Anyone can put a site up, and link to whatever
-							they want. They can be indexed by search engines in a day or two, and suddenly www.goatprices.com is
-							making money.
-						</aside>
-					</section>
-					<section>But apart from that?</section>
-					<section>Nothing.</section>
+				<section data-background-image="images/shinesolutionslogo.png" data-background-position="bottom right" data-background-size="20%">
+					<h1>Progressive Web Apps</h1>
+					<h2>What has the web ever done for us?</h2>
+					<p>
+						Gareth Jones - <a href="https://twitter.com/nomiddlename">@nomiddlename</a>
+					</p>
 				</section>
-				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
-					Native apps
-					<section>...are totally sweet.
+				<section>
+					<h2>The Plan</h2>
+					<ol>
+						<li class="fragment">Native apps are awesome!</li>
+						<li class="fragment">Native apps suck!</li>
+						<li class="fragment">What can we do? <span class="fragment">(SPOILER: PWAs)</span></li>
+						<li class="fragment">How do we do it?</li>
+						<li class="fragment">Browsers: Oh, FFS <span class="fragment">(SPOILER: Google)</span></li>
+						<li class="fragment">The summary for the people who fell asleep</li>
+					</ol>
+				</section>
+				<section>
+					<h2>Native apps are awesome!</h2>
+					<section>
+						<h3>Performance</h3>
 						<aside class="notes">
 							Originally, the move to native over web was for performance.
-							Your UI was slicker, you bundled up a lot of the furniture so that
-							the user didn't have to download background images, etc. It was all
-							about reducing the time to first interaction.
+							Your UI was slicker, because you could use native controls.
 						</aside>
 					</section>
-					<section>Rad.
-						<aside class="notes">
-							You got access to all the hardware features, could do some great things.
-						</aside>
-					</section>
-					<section>Perhaps, if I may be so bold, fully sick.
-						<aside class="notes">
-							You also got push notifications which are awesome for keeping your users
-							coming back for more. When they're done correctly.
-						</aside>
-					</section>
-					<section>You should install one now.</section>
-					<section><img src="images/trip-advisor-1.png"/></section>
-					<section><img src="images/trip-advisor-2.png"/></section>
-					<section>Never mind what you came here to do in the first place.</section>
-					<section><img src="images/trip-advisor-3.png"/></section>
-					<section data-background-image="images/dalek.jpg" data-state="dimmest">Install</section>
-					<section><img src="images/trip-advisor-4.png"/></section>
-					<section data-background-image="images/dalek.jpg" data-state="dim">INSTALL</section>
-					<section><img src="images/trip-advisor-5.png"/></section>
-					<section data-background-image="images/dalek.jpg">
-						<h2>INSTALL!</h2>
-						<p><cite><a href="https://commons.wikimedia.org/wiki/File:Dalek_(Dr_Who).jpg">Dalek image courtesy of Tony Hisgett</a></cite></p>
-					</section>
-					<section>Barriers</section>
 					<section>
-						Every step between your users and installing your app loses you 20% of them.
+						<h3>Time to first interaction</h3>
+						<blockquote class="fragment" cite="https://www.doubleclickbygoogle.com/articles/mobile-speed-matters/">
+							The average load time for mobile sites is 19 seconds over 3G.
+						</blockquote>
+						<blockquote class="fragment" cite="https://www.doubleclickbygoogle.com/articles/mobile-speed-matters/">
+							53% of mobile site visits are abandoned if pages take longer than 3 seconds to load.
+						</blockquote>
+						<a class="fragment" href="https://www.doubleclickbygoogle.com/articles/mobile-speed-matters/">Doubleclick Report</a>
 						<aside class="notes">
-							Every barrier you put between the user and their goal will lose you about 20% of your audience.
+							Reducing that time to first interaction is essential. Native apps have a great advantage here
+							because they can bundle up all the furniture they need into that first download. You can
+							get something in front of the user very soon after they've tapped your icon.
+						</aside>
+					</section>
+					<section>
+						<h3>Repeat customers</h3>
+						<p class="fragment">Home screen</p>
+						<p class="fragment">Push notifications</p>
+						<aside class="notes">
+							Two great features of native apps help get users coming back for more.
+							The little piece of home screen real estate you get remind them that you're there.
+							But push notifications are awesome for keeping your users coming back for more.
+							I was going to put up another quote from a marketing report that mentioned click-through
+							rates and conversions for push notifications, but here's something a bit more familiar.
+						</aside>
+					</section>
+					<section>
+						<img src="images/push-notification-1.png">
+						<aside class="notes">
+							This little notification is responsible for me having over 100 games in my library
+							that I've never even downloaded, let alone played. When done right, when they are
+							timely, and relevant, and not annoying, they're an awesome customer retention tool.
+						</aside>
+					</section>
+					<section>
+						<h3>Up yours, WWW.</h3>
+						<aside class="notes">
+							We've got reduced time to first interaction, we're on the home screen, and we've got
+							a great way of spamming, er, generating customer interest through push notifications.
+							We don't need any of that web nonsense, right? Native apps are the best.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Native apps suck!</h2>
+					<section>
+						<h3>Most people don't install apps</h3>
+						<img src="images/app-installs.png" width="75%"/>
+						<a href="http://qz.com/253618/most-smartphone-users-download-zero-apps-per-month/">http://qz.com/253618</a>
+						<aside class="notes">
+							Two-thirds of smartphone users install zero apps per month. They've got a handful of apps
+							that they use for most purposes. In fact, 42% of app time happens in just one app.
+							Why is that?
+						</aside>
+					</section>
+					<section>
+						<h3>People aren't looking for apps</h3>
+						<aside class="notes">
+							For most people, Google is the internet. They type what they're looking for into Google
+							and go to the first link that doesn't look too much like a paid ad. They're looking for
+							"things to do in Canberra" (we'll come back to that one), "prices of goats in Guatemala",
+							"smelliest cheese". Now you may have the best goat-pricing app in Guatemala, but your native-only
+							app is unlikely to appear in the results.
+						</aside>
+					</section>
+					<section>
+						<h3>App stores</h3>
+						<aside class="notes">
+							Unless someone knows the name of your app, or you've somehow contrived to get yourself into
+							the top 10 list of a category, your app will not be found in the app store. There are millions
+							in there by now. If someone does stumble on your app, can they even be bothered to install it?
+						</aside>
+					</section>
+					<section>
+						<h3>Barriers</h3>
+						<p>Every step between your users and installing your app loses you 20% of them.</p>
+						<aside class="notes">
 							That sounds like I just made that statistic up, but I didn't. Someone else did.
 							This is because your customer's goal (finding out about goat prices) is different to yours
 							(getting them to install your app).
@@ -136,23 +156,99 @@
 						<img src="images/mobile_funnel.png"/>
 						<p><cite><a href="http://blog.gaborcselle.com/2012/10/every-step-costs-you-20-of-users.html">Gabor Cselle</a></cite></p>
 					</section>
-					<section>Most people don't install apps
-						<img src="images/app-installs.png"/>
-						<p><cite><a href="http://qz.com/253618/most-smartphone-users-download-zero-apps-per-month/">http://qz.com/253618</a></cite></p>
+					<section>
+						<h3>Things to do in Canberra</h3>
 						<aside class="notes">
-							Two-thirds of smartphone users install zero apps per month. They've got a handful of apps
-							that they use for most purposes. In fact, 42% of app time happens in just one app.
-
-							So here's the problem - nobody will ever find your app. If by some miracle someone does,
-							they'll get distracted while attempting to download it. Even if they do download it, they'll
-							never actually use it. That's not my opinion. That's science - look, I even had graphs and
-							plausible-sounding statistics.
+							It's so hard to get people to find and install your app, that some sites can get
+							a little desperate. Here's an example.
 						</aside>
 					</section>
+					<section><img src="images/trip-advisor-1.png"/></section>
+					<section><img src="images/trip-advisor-2.png"/></section>
+					<section><img src="images/trip-advisor-3.png"/></section>
+					<section><img src="images/trip-advisor-4.png"/></section>
+					<section><img src="images/trip-advisor-5.png"/></section>
+					<section>
+						<h3>Go on, go on, go on.</h3>
+						<img src="images/mrs-doyle.gif">
+					</section>
 				</section>
-				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
-					PWAs
-					<section>If only there was another way
+				<section>
+					<h2>What has the web ever done for us?</h2>
+					<section>
+						<h3>Nothing</h3>
+						<aside class="notes">
+							It's not as if the web has got anything that can help us out.
+						</aside>
+					</section>
+					<section>
+						<h3>Well, there's links</h3>
+						<aside class="notes">
+							Links are the web's superpower, they're what made it great. They are still how a large
+							percentage of traffic makes it to most sites - people sharing links, not through facebook
+							or other trackable means, but by emails to friends or instant messages. It's been called
+							"Dark Social".
+							http://www.theatlantic.com/technology/archive/2012/10/dark-social-we-have-the-whole-history-of-the-web-wrong/263523/
+							But as a native app, you're cut off from links really - unless you have a mobile site as well.
+						</aside>
+					</section>
+					<section>
+						<h3>...and searching</h3>
+						<aside class="notes">
+							Being able to find your app in the store relies on the user typing in pretty much your app's
+							exact name. So they already have to know about you and that your app exists. Unless you can get
+							on the front page of the app store, or into the top 10 list for a category.
+							On the web, they're used to just typing in vaguely what they want and having Google's mind-reading
+							satellites pick out what they really wanted. And apps don't turn up much in the results - unless you
+							pay for those ads.
+							But as a native app, you're cut off from search results really - unless you have a mobile site as well.
+						</aside>
+					</section>
+					<section>
+						<h3>...and freedom from walled gardens</h3>
+						<aside class="notes">
+							The web has no restrictions, it's totally open. Anyone can put a site up, and link to whatever
+							they want. They can be indexed by search engines in a day or two, and suddenly www.goatprices.com is
+							making money.
+							But as a native app, you're stuck in the app stores, beholden to your masters.
+						</aside>
+					</section>
+					<section>
+						<h3>But apart from that?</h3>
+					</section>
+					<section>
+						<h3>Nothing.</h3>
+					</section>
+				</section>
+				<section>
+					<h3>In summary</h3>
+					<ol>
+						<li class="fragment">Nobody will find your app.</li>
+						<li class="fragment">Nobody will install your app.</li>
+						<li class="fragment">Nobody will use your app.</li>
+						<li class="fragment">You will die penniless and alone.</li>
+					</ol>
+				</section>
+				<section>
+					<h2>If only there was another way?</h2>
+					<h3 class="fragment">Surprise: Progressive Web Apps!</h3>
+					<aside class="notes">
+						You've already seen that you need a mobile site anyway, so what can we do to
+						make the best use of that.
+					</aside>
+				</section>
+				<section>
+					<h2>PWAs</h2>
+					<section>
+						<h3>Web Apps</h3>
+						<aside class="notes">
+							There's nothing fancy about this part - it's your mobile web site. Responsive design,
+							slick UI that's touch-enabled. All the stuff you probably have to do anyway, unless
+							you're just dumping your mobile users to the desktop site.
+						</aside>
+					</section>
+					<section>
+						<h3>Progressive</h3>
 						<aside class="notes">
 							Progressive web apps are made up of a few reasonably simple technologies that can be used to
 							enhance the mobile experience for users with browsers that support those technologies. The
@@ -160,7 +256,9 @@
 							functions are extra bits. Your web app will still work without them.
 						</aside>
 					</section>
-					<section>Time to first interaction
+					<section>
+						<h3>Time to first interaction</h3>
+						<h4 class="fragment">Service Workers!</h4>
 						<aside class="notes">
 							Service workers allow you to cache an app skeleton, so that your mobile app is
 							ready to go much sooner than a normal web app. Your service worker acts as a
@@ -168,26 +266,223 @@
 							serve them from a cache or not.
 						</aside>
 					</section>
-					<section>Getting onto the home screen
+					<section>
+						<h3>Getting onto the home screen</h3>
+						<h4 class="fragment">Manifests!</h4>
 						<aside class="notes">
 							Bypass all that tedious app store nonsense by using manifests to tell the browser that your site
 							is installable.
 						</aside>
 					</section>
-					<section>Push notifications
+					<section>
+						<h3><del>Spamming</del>Increasing Customer Engagement</h3>
+						<h4 class="fragment">Push notifications!</h4>
 						<aside class="notes">
 							If you've done the work to get a service worker and manifest on your site, then you're just a short
 							step away from getting push notifications for your site as well.
 						</aside>
 					</section>
 				</section>
-				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
-					Service Workers
+				<!--
+					************* SERVICE WORKERS *************
+				-->
+				<section>
+					<h2>Service Workers</h2>
+					<section>
+						<svg
+							 xmlns:xhtml="http://www.w3.org/1999/xhtml"
+							 xmlns:dc="http://purl.org/dc/elements/1.1/"
+							 xmlns:cc="http://creativecommons.org/ns#"
+							 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+							 xmlns:svg="http://www.w3.org/2000/svg"
+							 xmlns="http://www.w3.org/2000/svg"
+							 xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+							 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+							 width="805px"
+							 height="430px"
+							 version="1.1"
+							 id="svg2"
+							 inkscape:version="0.91 r13725"
+							 sodipodi:docname="service-worker-diagram.svg">
+							<metadata
+								 id="metadata40">
+								<rdf:RDF>
+									<cc:Work
+										 rdf:about="">
+										<dc:format>image/svg+xml</dc:format>
+										<dc:type
+											 rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+									</cc:Work>
+								</rdf:RDF>
+							</metadata>
+							<sodipodi:namedview
+								 pagecolor="#ffffff"
+								 bordercolor="#666666"
+								 borderopacity="1"
+								 objecttolerance="10"
+								 gridtolerance="10"
+								 guidetolerance="10"
+								 inkscape:pageopacity="0"
+								 inkscape:pageshadow="2"
+								 inkscape:window-width="1240"
+								 inkscape:window-height="681"
+								 id="namedview38"
+								 showgrid="false"
+								 inkscape:zoom="0.39130435"
+								 inkscape:cx="25.555556"
+								 inkscape:cy="215"
+								 inkscape:window-x="0"
+								 inkscape:window-y="23"
+								 inkscape:window-maximized="0"
+								 inkscape:current-layer="svg2" />
+							<defs
+								 id="defs4" />
+							<g
+								 inkscape:groupmode="layer"
+								 id="layer1"
+								 inkscape:label="Layer1"
+								 class="fragment">
+								<path
+									 style="fill:#000000;stroke:#cccccc;stroke-width:3;stroke-miterlimit:10"
+									 inkscape:connector-curvature="0"
+									 id="path8"
+									 pointer-events="none"
+									 stroke-miterlimit="10"
+									 d="m 622.5,32.5 160,0 20,20 0,80 -160,0 -20,-20 0,-80 z" />
+								<path
+									 style="fill:none;stroke:#cccccc;stroke-width:3;stroke-miterlimit:10"
+									 inkscape:connector-curvature="0"
+									 id="path10"
+									 pointer-events="none"
+									 stroke-miterlimit="10"
+									 d="m 642.5,132.5 0,-80 -20,-20 m 20,20 160,0" />
+								<path
+									 style="fill:#ff0000;stroke:#cccccc;stroke-width:3;stroke-miterlimit:10"
+									 inkscape:connector-curvature="0"
+									 id="path12"
+									 pointer-events="none"
+									 stroke-miterlimit="10"
+									 d="m 702.5,27.5 c 0,-6.67 20,-6.67 20,0 l 0,15 c 0,6.67 -20,6.67 -20,0 z" />
+								<path
+									 style="fill:none;stroke:#cccccc;stroke-width:3;stroke-miterlimit:10"
+									 inkscape:connector-curvature="0"
+									 id="path14"
+									 pointer-events="none"
+									 stroke-miterlimit="10"
+									 d="m 702.5,27.5 c 0,5 20,5 20,0" />
+								<g
+									 id="g16"
+									 transform="translate(684,85)">
+									<switch
+										 id="switch18">
+										<foreignObject
+											 requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+											 height="14"
+											 width="76"
+											 pointer-events="all"
+											 style="overflow:visible;">
+											<xhtml:div
+												 style="display: inline-block; font-size: 14px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; vertical-align: top; width: 76px; white-space: nowrap; word-wrap: normal; text-align: center;">
+												<xhtml:div
+													 style="display:inline-block;text-align:inherit;text-decoration:inherit;">The Internet</xhtml:div>
+											</xhtml:div>
+										</foreignObject>
+										<text
+											 style="font-size:14px;font-family:Helvetica;text-anchor:middle;fill:#ffffff"
+											 id="text20"
+											 font-size="14px"
+											 y="14"
+											 x="38">The Internet</text>
+									</switch>
+								</g>
+								<rect
+									 style="fill:#000000;stroke:#cccccc;stroke-width:3"
+									 id="rect22"
+									 pointer-events="none"
+									 ry="22.5"
+									 rx="22.5"
+									 height="150"
+									 width="160"
+									 y="2.5"
+									 x="2.5" />
+								<path
+									 style="fill:none;stroke:#ff9933;stroke-width:3;stroke-miterlimit:10"
+									 inkscape:connector-curvature="0"
+									 id="path24"
+									 pointer-events="none"
+									 stroke-miterlimit="10"
+									 d="m 182.5,72.5 0,-4.5 q 0,-4.5 10,-4.5 l 324,0 q 10,0 10,-10 l 0,-5.5 q 0,-5.5 9.44,-2.21 l 67.12,23.42 q 9.44,3.29 0,6.58 l -67.12,23.42 q -9.44,3.29 -9.44,-6.71 l 0,-5.5 q 0,-5.5 -10,-5.5 l -324,0 q -10,0 -10,-4.5 z" />
+								<path
+									 style="fill:#ff9933;stroke:none"
+									 inkscape:connector-curvature="0"
+									 id="path26"
+									 pointer-events="none"
+									 d="m 50.16,99.59 c 27.91,11.66 49.11,18.47 78.98,27.82 0.6,0.09 1.17,-0.33 1.27,-0.96 0.09,-0.6 -0.33,-1.19 -0.94,-1.31 -47.04,-14.71 -83.97,-31 -92.4,-34.8 -0.87,-0.34 -1.88,0.05 -2.21,0.89 -0.36,0.87 0.02,1.8 0.87,2.13 2.1,0.94 4.16,1.85 6.17,2.71 l -6.64,5.03 c -0.75,1.09 -0.42,2.5 0.69,3.25 0.83,0.55 2,0.48 2.8,-0.02 L 50.16,99.59 Z M 127.21,70.14 105.5,50.34 c 0.15,0.01 0.3,0.02 0.46,0.02 4.4,0 7.96,-3.56 7.96,-7.93 0,-4.37 -3.56,-7.92 -7.96,-7.92 -4.42,0 -7.98,3.55 -7.98,7.92 0,1.68 0.52,3.22 1.41,4.49 L 84.67,41.71 76.71,30.27 c -0.61,-0.84 -1.55,-1.4 -2.66,-1.54 -2.07,-0.23 -3.97,1.26 -4.21,3.35 -0.1,0.86 0.12,1.7 0.53,2.41 l 8.12,11.69 c 0.38,0.46 0.85,0.86 1.41,1.12 l 9.41,3.68 -15.46,7.85 c -2.16,1.22 -3.69,3.37 -4.12,5.87 l 0.07,14.05 -14.3,6.41 c -1.6,0.76 -2.75,2.36 -2.82,4.25 -0.12,2.71 2,4.98 4.73,5.1 0.84,0.05 1.67,-0.14 2.37,-0.49 l 17.5,-7.86 c 1.25,-0.66 2.18,-1.84 2.49,-3.3 l -0.02,-8.74 12.14,10.81 -2.23,18.4 c 0,0.12 -0.02,0.23 -0.02,0.35 -0.12,2.71 2,5 4.73,5.12 2.56,0.09 4.75,-1.76 5.1,-4.25 l 2.62,-21 c 0,-0.09 0.02,-0.19 0.02,-0.28 0.05,-1.47 -0.54,-2.81 -1.53,-3.74 l -11.23,-9.95 16.94,-8.28 15.73,14.38 c 0.7,0.68 1.66,1.1 2.7,1.1 2.11,-0.02 3.81,-1.73 3.78,-3.81 0,-1.12 -0.51,-2.13 -1.29,-2.83 z" />
+							</g>
+							<g
+								 inkscape:groupmode="layer"
+								 id="layer2"
+								 inkscape:label="Layer2"
+								 style="display:inline"
+								 class="fragment">
+								<rect
+									 style="fill:#000000;stroke:#cccccc;stroke-width:3"
+									 id="rect28"
+									 pointer-events="none"
+									 ry="22.5"
+									 rx="22.5"
+									 height="150"
+									 width="170"
+									 y="7.5"
+									 x="302.5" />
+								<path
+									 style="fill:#ff9933;stroke:none"
+									 inkscape:connector-curvature="0"
+									 id="path30"
+									 pointer-events="none"
+									 d="m 361.75,44.68 c 2.07,0 3.71,-1.68 3.71,-3.73 0,-2.03 -1.64,-3.69 -3.71,-3.69 -2.07,0 -3.72,1.66 -3.72,3.69 -0.01,2.06 1.65,3.73 3.72,3.73 m 10.94,0 c 2.07,0 3.73,-1.68 3.73,-3.73 0,-2.03 -1.67,-3.69 -3.73,-3.69 -2.04,0 -3.71,1.66 -3.71,3.69 0,2.06 1.67,3.73 3.71,3.73 m 49.4,-11.18 c 1.89,0 3.41,1.5 3.41,3.36 l 0,11.51 -74.82,0 0,-11.49 c 0,-1.86 1.53,-3.37 3.39,-3.37 l 68.02,-0.01 z m -34.58,81.02 c 13.32,0 24.09,-10.7 24.09,-23.91 0,-13.21 -10.78,-23.92 -24.09,-23.92 -13.31,0 -24.09,10.71 -24.09,23.92 0,13.21 10.78,23.91 24.09,23.91 m -37.01,16.95 0,-74.53 c 0,-1.85 1.51,-3.36 3.39,-3.36 l 68.03,0 c 1.87,0 3.39,1.51 3.39,3.36 l 0,74.56 -74.81,-0.03 z M 407.04,84.5 c 0.5,1.74 0.76,3.58 0.76,5.49 0,11.08 -9.08,20.07 -20.26,20.07 -11.19,0 -20.26,-8.99 -20.26,-20.07 0,-2.07 0.32,-4.05 0.87,-5.92 l 0,0.04 c 1.3,1.39 3.14,2.26 5.21,2.26 1.8,0 3.42,-0.64 4.67,-1.74 l -0.02,0 c 1.26,1.1 2.9,1.74 4.69,1.74 1.85,0 3.54,-0.69 4.8,-1.88 l 0,0.03 c 1.25,1.16 2.93,1.85 4.82,1.85 1.91,0 3.67,-0.75 4.9,-1.97 l 0,0.03 c 1.28,1.23 3.01,1.95 4.92,1.95 1.86,0 3.59,-0.72 4.86,-1.91 l 0.04,0.03 z" />
+							</g>
+							<g
+								 inkscape:groupmode="layer"
+								 id="layer3"
+								 inkscape:label="Layer3"
+								 style="display:inline"
+								 class="fragment">
+								<rect
+									 style="fill:#000000;stroke:#cccccc;stroke-width:3"
+									 id="rect32"
+									 pointer-events="none"
+									 ry="21"
+									 rx="21"
+									 height="140"
+									 width="170"
+									 y="287.5"
+									 x="302.5" />
+								<path
+									 style="fill:none;stroke:#ff9933;stroke-width:3;stroke-miterlimit:10"
+									 inkscape:connector-curvature="0"
+									 id="path36"
+									 pointer-events="none"
+									 stroke-miterlimit="10"
+									 d="m 374.29811,178.64516 7.59834,-5.56824 q 7.59834,-5.56824 15.45154,0.61976 l 13.89111,10.9441 q 7.8532,6.188 -2.14527,6.01347 l -5.49917,-0.096 q -5.49916,-0.096 -5.67368,9.90249 l -0.8447,48.39262 q -0.17452,9.99848 9.82395,10.173 l 5.49917,0.096 q 5.49916,0.096 -2.56522,6.00615 l -14.26459,10.45264 q -8.06438,5.91016 -15.91758,-0.27784 l -13.89111,-10.9441 q -7.8532,-6.188 2.14527,-6.01348 l 5.49917,0.096 q 5.49916,0.096 5.67368,-9.90249 l 0.8447,-48.39263 q 0.17452,-9.99848 -9.82395,-10.173 l -5.49917,-0.096 q -5.49916,-0.096 2.09918,-5.66422 z" />
+								<path
+									 style="fill:#ff9933;stroke:none"
+									 inkscape:connector-curvature="0"
+									 id="path34"
+									 pointer-events="none"
+									 d="m 355.62,398.37 -7.24,0 c -5.03,0 -9.88,-3.73 -9.88,-10.21 0,0 0,-46.29 0,-46.42 0,-5.74 4.74,-10.09 9.88,-10.1 l 7.24,0 0,66.73 0,0 z m 45.63,-66.62 0,-9.58 c 0.03,-3.46 -3.01,-5.67 -6.69,-5.64 0,0 -14.12,-0.03 -14.06,0 -3.67,-0.03 -6.75,2.18 -6.75,5.64 l 0,9.59 -13.22,0 0,66.74 54.05,0 0,-66.75 -13.33,0 z m -4.97,0 -17.68,0 0,-9.87 17.68,0 0,9.87 z m 23.14,66.62 7.25,0 c 4.98,-0.01 9.83,-3.73 9.82,-10.21 0,0 0.01,-46.29 0,-46.42 0.01,-5.74 -4.72,-10.09 -9.82,-10.1 l -7.25,0 0,66.73 0,0 z" />
+							</g>
+						</svg>
+						<aside class="notes">
+							It's a bit of javascript that the browser runs in the background. No access to the DOM,
+							but can pass messages.
+						</aside>
+					</section>
 					<section>
 						<a href="https://nomiddlename.github.io/pow/">https://nomiddlename.github.io/pow/ - demo site</a>
 					</section>
 					<section>
-						1. HTTPS only (localhost counts as secure)
+						<h3>1. HTTPS only (localhost counts as secure)</h3>
 						<aside class="notes">
 							This is part of Google's move to prefer secure origins for powerful new features. And service
 							workers allow you to intercept any http request made on the page, so that's pretty powerful.
@@ -196,7 +491,7 @@
 						</aside>
 					</section>
 					<section>
-						2. Let the browser know about the service worker.
+						<h3>2. Let the browser know about the service worker.</h3>
 					</section>
 					<section>
 						<img src="images/sw-1.png"/>
@@ -244,6 +539,9 @@
 						<img src="images/sw-7.png"/>
 						<aside class="notes">
 							That's because we had this list of files in that "install" event at the start.
+							This is our app skeleton, the part that assists in that time-to-first-interation reduction.
+							These files all live in the browser, and we never have to go to the internet to get them
+							after this initial download.
 
 							You’ll have noticed code in the “activate” event handler that deletes old caches.
 							When we want to update our components, we bump the cache version number, reload the
@@ -262,15 +560,22 @@
 						</aside>
 					</section>
 					<section>
-						Don't use my dodgy code.
+						<h3>Don't use my dodgy code.</h3>
 						<p><a href="https://github.com/GoogleChrome/sw-precache">sw-precache (https://github.com/GoogleChrome/sw-precache)</a></p>
 						<p><a href="https://googlechrome.github.io/sw-toolbox/">sw-toolbox (https://googlechrome.github.io/sw-toolbox/)</a></p>
 					</section>
 				</section>
-				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
-					Manifests
+				<!--
+					************** MANIFESTS ****************
+				-->
+				<section>
+					<h2>Manifests</h2>
+					<aside class="notes">
+						So that was service workers - the way to reduce the time to first interaction.
+						Manifests get us the next piece - the home screen real estate.
+					</aside>
 					<section>
-						Makes your app installable.
+						<h3>Makes your app installable.</h3>
 						<aside class="notes">
 							There are other ways to do this, using AppCache and lots of meta tags. AppCache
 							is difficult to work with, and Chrome is deprecating support for it in favour of
@@ -300,7 +605,7 @@
 						</aside>
 					</section>
 					<section>
-						When do you get to install?
+						<h3>When do you get to install?</h3>
 						<aside class="notes">
 							Will be used if someone presses the "add to home screen" button, but there are
 							also a few conditions under which Chrome will show the install banner without
@@ -327,7 +632,7 @@
 						<img src="images/manifest-5.png">
 					</section>
 					<section>
-						Annoying?
+						<h3>Annoying?</h3>
 						<aside class="notes">
 							Hold on, weren't you banging on about not annoying users before?
 							Maybe, in your extensive user testing ("asking your mum"), you think this is getting
@@ -337,7 +642,7 @@
 						</aside>
 					</section>
 					<section>
-						beforeinstallprompt event
+						<h3>beforeinstallprompt event</h3>
 						<aside class="notes">
 							Yay, those boffins in the browser labs have thought of that. Listen for the
 							beforeinstallprompt event and you can choose to stop it from triggering
@@ -346,185 +651,220 @@
 						</aside>
 					</section>
 				</section>
-				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
-					Push notifications
-					<section>
-						More likely to convert
-						<aside class="notes">
-							A user that has received a timely, relevant push notification is something-something more likely
-							to convert into a sale or evolve into a charizard or something. I was going to show some quotes
-							here from case studies that show 20% click-through rates on push notifications on various sites.
-							Instead I'm going to show you something a bit more personal, and I hope familiar to some of you.
-						</aside>
-					</section>
-					<section>
-						<img src="images/push-notification-1.png">
-					</section>
-					<section>
-						1. Ask for permission
-						<aside class="notes">
-							Choose a good moment to ask the user. Not when they first turn up.
-						</aside>
-					</section>
-					<section>
-						<img src="images/push-notification-2.png">
-						<aside class="notes">I've added a button to the programme page here.</aside>
-					</section>
-					<section>
-						<img src="images/push-notification-3.png">
-						<aside class="notes">Clicking that button triggers the browser's permission popup</aside>
-					</section>
-					<section>
-						<img src="images/push-notification-4.png">
-						<aside class="notes">
-							Here I'm printing out to the console what we get back from a
-							successful subscription. Three things that we need: endpoint, public key, and auth key.
-						</aside>
-					</section>
-					<section>
-						<img src="images/push-notification-5.png">
-						<aside class="notes">Here's the code for that .</aside>
-					</section>
-					<section>
-						2. Send a message
-					</section>
-					<section>
-						<img src="images/push-notification-6.png">
-						<aside class="notes">
-							Using node web-push library, but there are lots of others.
-							There's some fiddly encryption you have to do, so it's best to just use a library.
-							Note the three things that came from the browser, and the json payload.
-						</aside>
-					</section>
-					<section>
-						3. Receive the message
-					</section>
-					<section>
-						<img src="images/push-notification-7.png">
-						<aside class="notes">
-							Listen for the push event, display a notification.
-							The notification API allows you to add action buttons, and it returns a promise so
-							you can see which buttons were pressed.
-						</aside>
-					</section>
-					<section>
-						<img src="images/push-notification-8.png">
-						<aside class="notes">Message received.</aside>
-					</section>
-					<section>
-						Complications
-						<aside class="notes">
-							I chose Firefox for the demo here because their implementation is nice and simple.
-							The browser needs to be running for the notifications to be picked up, otherwise they
-							queue up and get picked up when the browser starts up.
-							To get this to work on Chrome, or an Android device, you'll need to set up a
-							GCM project. The web-push libraries handle a lot of the details for you.
-						</aside>
-					</section>
+				<!---
+					******** PUSH NOTIFICATIONS *******
+				-->
+				<section>
+ 					<h2>Push notifications</h2>
+					<aside class="notes">
+						So manifests get us on the home screen. The other main thing was push notifications,
+						getting the user coming back for more. To get that to work you need a service worker
+						- awesome, we've already got one.
+					</aside>
+ 					<section>
+ 						<h3>1. Ask for permission</h3>
+ 						<aside class="notes">
+ 							Choose a good moment to ask the user. Not when they first turn up.
+ 						</aside>
+ 					</section>
+ 					<section>
+ 						<img src="images/push-notification-2.png">
+ 						<aside class="notes">I've added a button to the programme page here.</aside>
+ 					</section>
+ 					<section>
+ 						<img src="images/push-notification-3.png">
+ 						<aside class="notes">Clicking that button triggers the browser's permission popup</aside>
+ 					</section>
+ 					<section>
+ 						<img src="images/push-notification-4.png">
+ 						<aside class="notes">
+ 							Here I'm printing out to the console what we get back from a
+ 							successful subscription. Three things that we need: endpoint, public key, and auth key.
+ 						</aside>
+ 					</section>
+ 					<section>
+ 						<img src="images/push-notification-5.png">
+ 						<aside class="notes">Here's the code for that .</aside>
+ 					</section>
+ 					<section>
+ 						<h3>2. Send a message</h3>
+ 					</section>
+ 					<section>
+ 						<img src="images/push-notification-6.png">
+ 						<aside class="notes">
+ 							Using node web-push library, but there are lots of others.
+ 							There's some fiddly encryption you have to do, so it's best to just use a library.
+ 							Note the three things that came from the browser, and the json payload.
+ 						</aside>
+ 					</section>
+ 					<section>
+ 						<h3>3. Receive the message</h3>
+ 					</section>
+ 					<section>
+ 						<img src="images/push-notification-7.png">
+ 						<aside class="notes">
+ 							Listen for the push event, display a notification.
+ 							The notification API allows you to add action buttons, and it returns a promise so
+ 							you can see which buttons were pressed.
+ 						</aside>
+ 					</section>
+ 					<section>
+ 						<img src="images/push-notification-8.png">
+ 						<aside class="notes">Message received.</aside>
+ 					</section>
+ 					<section>
+ 						<h3>Complications</h3>
+ 						<aside class="notes">
+ 							I chose Firefox for the demo here because their implementation is nice and simple.
+ 							The browser needs to be running for the notifications to be picked up, otherwise they
+ 							queue up and get picked up when the browser starts up.
+ 							To get this to work on Chrome, or an Android device, you'll need to set up a
+ 							GCM project. The web-push libraries handle a lot of the details for you.
+ 						</aside>
+ 					</section>
+ 				</section>
+				<section>
+					<h3>Up yours, native apps!</h3>
+					<aside class="notes">
+						We've reduced the time to first interaction, we're on the home screen, we've got push notifications.
+						Who's laughing now, native apps? Eh?
+					</aside>
 				</section>
-				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
-					The bad news
+				<!--
+					*************** Browsers: Oh, FFS *****************
+				-->
+				<section>
+					<h2>Browsers: Oh, FFS</h2>
 					<section>
-						Browser support
+						<h3>Browser support</h3>
 					</section>
 					<section>
-						Android - two thumbs up
+						<h3>Android - two thumbs up</h3>
 					</section>
 					<section>
 						<ul>
 							<li>Service-workers &check;</li>
-							<li>Push notifications &check;</li>
 							<li>Manifest &check;</li>
-							<li>Cache &check;</li>
-							<li>Fetch &check;</li>
-							<li>IndexedDB &check;</li>
+							<li>Push notifications &check;</li>
 						</ul>
 					</section>
 					<section>
-						iOS
+						<h3>iOS</h3>
 						<aside class="notes">
 							Safari = IE6 of the mobile world.
 							Chrome + Firefox on iOS have to use the same underlying browser tech (webkit).
-							But - remember the progressive part of the name. There's nothing here that will
-							break your mobile site on Safari (if you implement it correctly, anyway). And the
-							webkit people have got service workers on their radar.
-
-							(Push notifications work on desktop Safari, but not mobile)
 						</aside>
 					</section>
 					<section>
 						<ul>
 							<li>Service-workers &cross;</li>
-							<li>Push notifications &cross;</li>
 							<li>Manifest &cross;</li>
-							<li>Cache &cross;</li>
-							<li>Fetch &cross;</li>
-							<li>IndexedDB - maybe</li>
+							<li>Push notifications &cross;</li>
 						</ul>
-					</section>
-				</section>
-				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
-					When should we use PWAs?
-					<section>
-						Anything where your business model does not involve selling your app in a store
 						<aside class="notes">
-							This one is pretty obvious - you're going to bypass the app stores.
-
-							An ecommerce site is perfect - nobody wants to install an app just to buy something,
-							but if you've got repeat customers, they're going to be given the option of installing
-							your PWA to their homepage, and you can ask nicely if they want push notifications.
+							But - remember the progressive part of the name. There's nothing here that will
+							break your mobile site on Safari (if you implement it correctly, anyway). And the
+							webkit people have got service workers on their radar.
+							(Push notifications work on desktop Safari, but not mobile)
 						</aside>
 					</section>
+				</section>
+				<!--
+					*************** TL;DR ************************
+				-->
+				<section>
+					<h2>TL;DR</h2>
 					<section>
-						If you've got a mobile site, but don't know if you want a native one.
+						<h3>PWAs bring some benefits of native apps</h3>
+						<ul>
+							<li class="fragment">Time to first interaction - Service Workers!</li>
+							<li class="fragment">Install to home screen - Manifests!</li>
+							<li class="fragment">User engagement - Push Notifications!</li>
+						</ul>
 						<aside class="notes">
-							You can improve the performance of your mobile site through the use
-							of service workers to cache data. Add a manifest to get the installable
-							feature. Adding push notifications is probably a little bit more work,
-							but still less than making a full Android app.
-
-							I used to work for A&amp;R Bookworld - they had a mobile site, but no apps.
-							This was because most of their traffic came from Google: searches, or ad words.
-							Nobody wants to install your app if they're looking for a cheap book, so
-							there's no benefit in them developing apps.
+							The choice to build a native app is not necessarily an obvious one any more,
+							especially for Android users. Maybe a PWA would give you more for your money.
 						</aside>
 					</section>
-					<section>
-						You never want to have to implement another "INSTALL" popup.
-					</section>
 				</section>
-				<section data-background-image="images/shinesolutionslogo.png" data-background-position="top right" data-background-size="20%">
-					Homework
-					<section>
-						<a href="https://www.udacity.com/course/offline-web-applications--ud899">Offline-first - Udacity</a>
-					</section>
-					<section>
-						<a href="https://developers.google.com/web/fundamentals/?hl=en">Google's developer pages</a>
-					</section>
-					<section>
-						<a href="https://serviceworke.rs">serviceworke.rs - Cookbook of SW examples</a>
-					</section>
-					<section>
-						<a href="https://jakearchibald.github.io/isserviceworkerready/index.html">isserviceworkerready?</a>
-					</section>
-					<section>
-						<a href="https://github.com/GoogleChrome/lighthouse">Lighthouse - PWA audit tool</a>
-					</section>
-					<section>
-						People to follow<br>
-						Alex Russell - <a href="https://twitter.com/slightlylate">@slightlylate</a><br>
-						Addy Osmani - <a href="https://twitter.com/addyosmani">@addyosmani</a><br>
-						Jake Archibald - <a href="https://twitter.com/jaffathecake">@jaffathecake</a><br>
-					</section>
+				<!--
+					************* Homework *******************
+				-->
+				<section>
+					<h2>Homework</h2>
+					<ul>
+						<li class="fragment">
+							<a href="https://www.udacity.com/course/offline-web-applications--ud899">Offline-first - Udacity</a>
+						</li>
+						<li class="fragment">
+							<a href="https://developers.google.com/web/fundamentals/?hl=en">Google's developer pages</a>
+						</li>
+						<li class="fragment">
+							<a href="https://serviceworke.rs">serviceworke.rs - Cookbook of SW examples</a>
+						</li>
+						<li class="fragment">
+							<a href="https://jakearchibald.github.io/isserviceworkerready/index.html">isserviceworkerready?</a>
+						</li>
+						<li class="fragment">
+							<a href="https://github.com/GoogleChrome/lighthouse">Lighthouse - PWA audit tool</a>
+						</li>
+						<li class="fragment">
+							People to follow:
+							<ul>
+								<li>Alex Russell - <a href="https://twitter.com/slightlylate">@slightlylate</a></li>
+								<li>Addy Osmani - <a href="https://twitter.com/addyosmani">@addyosmani</a></li>
+								<li>Jake Archibald - <a href="https://twitter.com/jaffathecake">@jaffathecake</a></li>
+							</ul>
+						</li>
+					</ul>
 				</section>
-				<section data-background-image="images/lone-ranger.jpg" data-background-position="right" data-state="dim">
-					Who was that masked man?
-					<section>
-						Gareth Jones<br>
-						<a href="https://twitter.com/nomiddlename">@nomiddlename</a><br>
-						<a href="http://www.shinesolutions.com">Shine Solutions</a>
-					</section>
+				<!--
+					************ That's all folks ***************
+				-->
+				<section data-background-image="images/shinesolutionslogo.png" data-background-position="bottom right" data-background-size="20%">
+					<h2>Who was that masked man?</h2>
+					<div>
+						<img src="images/lone-ranger.jpg" width="20%" style="float:left;margin-left:20%;">
+						<p>
+							Gareth Jones<br><a href="https://twitter.com/nomiddlename">@nomiddlename</a>
+						</p>
+					</div>
 				</section>
+			</section>
+
+				<!--
+					<section>
+						When should we use PWAs?
+						<section>
+							Anything where your business model does not involve selling your app in a store
+							<aside class="notes">
+								This one is pretty obvious - you're going to bypass the app stores.
+
+								An ecommerce site is perfect - nobody wants to install an app just to buy something,
+								but if you've got repeat customers, they're going to be given the option of installing
+								your PWA to their homepage, and you can ask nicely if they want push notifications.
+							</aside>
+						</section>
+						<section>
+							If you've got a mobile site, but don't know if you want a native one.
+							<aside class="notes">
+								You can improve the performance of your mobile site through the use
+								of service workers to cache data. Add a manifest to get the installable
+								feature. Adding push notifications is probably a little bit more work,
+								but still less than making a full Android app.
+
+								I used to work for A&amp;R Bookworld - they had a mobile site, but no apps.
+								This was because most of their traffic came from Google: searches, or ad words.
+								Nobody wants to install your app if they're looking for a cheap book, so
+								there's no benefit in them developing apps.
+							</aside>
+						</section>
+						<section>
+							You never want to have to implement another "INSTALL" popup.
+						</section>
+					</section>
+
+ -->
 			</div>
 		</div>
 
@@ -535,6 +875,8 @@
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				history: true,
+				controls: false,
+				progress: false,
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
