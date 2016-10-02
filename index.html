@@ -33,6 +33,13 @@
 			border: none;
 			background: transparent;
 		}
+
+		.reveal .hljs {
+			background: transparent;
+			font-size: 1.5em;
+			line-height: 1.5em;
+		}
+
 		</style>
 
 		<!-- Printing and PDF exports -->
@@ -572,69 +579,110 @@
 						<h3>2. Let the browser know about the service worker.</h3>
 					</section>
 					<section>
-						<img src="images/sw-1.png"/>
-					</section>
-					<section>
-						<img src="images/sw-2.png"/>
+						<pre><code data-trim data-noescape class="javascript">
+<span class="fragment">// this is in your main javascript
+if ('serviceWorker' in navigator) {</span>
+<span class="fragment">  navigator.serviceWorker.register('/sw.js')</span>
+<span class="fragment">    .then(() => {</span>
+<span class="fragment">      console.log("Service worker registered!");
+  });
+}</span>
+						</code></pre>
 						<aside class="notes">
-							Note that sw.js is in the root of the site - you can't ask for a higher
-							level of scope, but you can ask for less. The API also uses promises.
-							(Can have more than one sw with different scopes?)
-
 							That call to "register" loads the service worker, and triggers an "install" event.
 						</aside>
 					</section>
 					<section>
-						<img src="images/sw-3.png"/>
+						<h3>3. The browser installs the service worker</h3>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape class="javascript">
+<span class="fragment">//in your service worker - sw.js
+self.addEventListener('install', function(e) {</span>
+<span class="fragment">  e.waitUntil(
+    caches.open(cacheName).then((cache) => {</span>
+<span class="fragment">      return cache.addAll(filesToCache);
+    })
+  )
+});
+</span>
+</code></pre>
 						<aside class="notes">
 							Here you can see I'm setting up a cache, and adding some files to it for later on.
 							At this point the sw is not running, that doesn't happen until you get the "activate" event.
 						</aside>
 					</section>
 					<section>
-						<img src="images/sw-4.png"/>
+						<pre><code data-trim data-noescape class="javascript">
+var cacheName = 'pow-v30';
+var filesToCache = [
+  "bower_components/jquery/dist/jquery.min.js",
+  //other css, etc.
+  ...
+  "js/index.js",
+  "data/speakers.json",
+  "speakers.html",
+  ...
+];
+</code></pre>
+						<aside class="notes">
+							This is our app skeleton, the part that assists in that time-to-first-interation reduction.
+							These files all live in the browser, and we never have to go to the internet to get them
+							after this initial download.
+							Storage limits - shared for all storage areas (local, indexed db, cache) for domain.
+							Most browsers limit to about 50Mb, but can query this using Quota API. But you should
+							code to deal with having all your cached data removed by a user.
+						</aside>
+					</section>
+					<section>
+						<h3>4. The browser triggers an activate event</h3>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape class="javascript">
+<span class="fragment">//in your service-worker - sw.js
+self.addEventListener('activate', function(e) {</span>
+<span class="fragment">  e.waitUntil(
+    caches.keys().then(keys => {
+      // delete any old caches
+      ...
+    })
+  )
+});
+</code></pre>
 						<aside class="notes">
 							Here we're clearing out old caches that we don't need any more.
-
 							For here on, our service worker is running in the background. Not doing anything, but it's there.
 						</aside>
 					</section>
 					<section>
-						<img src="images/sw-5.png"/>
+						<h3>5. Now we can intercept requests</h3>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape class="javascript">
+<span class="fragment">//in your service worker - sw.js
+self.addEventListener('fetch', function(e) {</span>
+<span class="fragment">  e.respondWith(</span>
+<span class="fragment">    caches.open(cacheName).then(cache => {
+      return cache.match(e.request).then(response => {</span>
+<span class="fragment">        return response || fetch(e.request);
+      });
+    })
+  )
+});
+</span>
+</code></pre>
 						<aside class="notes">
 							To intercept requests, and behave like a proxy, we have to listen for the "fetch" event.
-
 							event 'e' has a property 'request' which the Cache API can use a key for storing responses.
 						</aside>
+					</section>
+					<section>
+						<h3>6. Serve our app skeleton from the cache</h3>
 					</section>
 					<section>
 						<img src="images/sw-6.png"/>
 						<aside class="notes">
 							Now, when we click onto another page, we get this.
-						</aside>
-					</section>
-					<section>
-						<img src="images/sw-7.png"/>
-						<aside class="notes">
-							That's because we had this list of files in that "install" event at the start.
-							This is our app skeleton, the part that assists in that time-to-first-interation reduction.
-							These files all live in the browser, and we never have to go to the internet to get them
-							after this initial download.
-
-							You’ll have noticed code in the “activate” event handler that deletes old caches.
-							When we want to update our components, we bump the cache version number, reload the
-							page - the new service worker will become active and the old one deleted, and our
-							cache replaced with a new one. Caveat: filling the service worker cache will make
-							use of the browser cache, so if it doesn’t look like your pages are updating, then
-							check that as well - it fooled me for a while, I was convinced my service worker was
-							broken. I also thought this would be a great replacement for all those little
-							cache-busting tricks we do. You could use this as a central place to manage script
-							updates - but this fallback to the browser cache means you’d still need to include the
-							cache-busting. But at least you’d have one place to do all your cache-busting.
-
-							Storage limits - shared for all storage areas (local, indexed db, cache) for domain.
-							Most browsers limit to about 50Mb, but can query this using Quota API. But you should
-							code to deal with having all your cached data removed by a user.
 						</aside>
 					</section>
 					<section>
@@ -666,17 +714,16 @@
 						</code></pre>
 					</section>
 					<section>
-						<pre><code data-trim>
+						<pre><code data-trim data-noescape>
 {
-  "name": "POW! Conference 2016",
-  "short_name": "POW! 2016",
-  "start_url": "/pow/",
-  "display": "standalone",
-  "background_color": "white",
-  "description": "Schedules and speakers for the exciting POW! Conference 2016",
-  "icons": [
-    { "src": "images/logo.png", "sizes": "192x192", "type": "image/png" }
-  ]
+<span class="fragment">  "short_name": "POW! 2016",</span>
+<span class="fragment">  "start_url": "/pow/",</span>
+<span class="fragment">  "display": "standalone",</span>
+<span class="fragment">  "icons": [{
+      "src": "images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }]</span>
 }
 						</code></pre>
 						<aside class="notes">
@@ -1224,7 +1271,18 @@
  						</aside>
  					</section>
  					<section>
- 						<img src="images/push-notification-5.png">
+						<pre><code data-trim data-noescape class="javascript">
+<span class="fragment">//in your main javascript
+navigator.serviceWorker.ready.then(reg => {</span>
+<span class="fragment">  Notification.requestPermission().then(() => {</span>
+<span class="fragment">    reg.pushManager.subscribe({
+      userVisibleOnly: true
+    })</span><span class="fragment">.then(sub => {
+      // PushSubscription
+    })
+  })
+})</span>
+</code></pre>
  						<aside class="notes">Here's the code for that .</aside>
  					</section>
  					<section>
