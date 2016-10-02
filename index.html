@@ -217,13 +217,17 @@
 						</aside>
 					</section>
 					<section>
-						<h3>...and freedom from walled gardens</h3>
+						<h3>...and easy distribution</h3>
 						<aside class="notes">
 							The web has no restrictions, it's totally open. Anyone can put a site up, and link to whatever
 							they want. They can be indexed by search engines in a day or two, and suddenly www.goatprices.com is
 							making money.
 							But as a native app, you're stuck in the app stores, beholden to your masters.
 						</aside>
+					</section>
+					<section>
+            <h3>(Instant Apps)</h3>
+            <h4 class="fragment">(... not available yet)</h4>
 					</section>
 					<section>
 						<h3>But apart from that?</h3>
@@ -564,9 +568,6 @@
 						</aside>
 					</section>
 					<section>
-						<a href="https://nomiddlename.github.io/pow/">https://nomiddlename.github.io/pow/ - demo site</a>
-					</section>
-					<section>
 						<h3>1. HTTPS only (localhost counts as secure)</h3>
 						<aside class="notes">
 							This is part of Google's move to prefer secure origins for powerful new features. And service
@@ -685,6 +686,12 @@ self.addEventListener('fetch', function(e) {</span>
 							Now, when we click onto another page, we get this.
 						</aside>
 					</section>
+          <section>
+            <video src="images/pow-demo.mp4" muted="true" autoplay="true" width="80%">
+          </section>
+          <section>
+            <a href="https://nomiddlename.github.io/pow/">https://nomiddlename.github.io/pow/ - demo site</a>
+          </section>
 					<section>
 						<h3>Don't use my dodgy code.</h3>
 						<p><a href="https://github.com/GoogleChrome/sw-precache">sw-precache (https://github.com/GoogleChrome/sw-precache)</a></p>
@@ -1617,7 +1624,19 @@ navigator.serviceWorker.ready.then(reg => {</span>
 						</svg>
 					</section>
  					<section>
- 						<img src="images/push-notification-6.png">
+						<pre><code data-trim data-noescape class="javascript">
+<span class="fragment">//server-side code
+const push = require('web-push');</span>
+<span class="fragment">push.sendNotification(</span>
+<span class="fragment">  'https://updates.push.services.mozilla....',</span>
+<span class="fragment">  { userPublicKey: '...',
+    userAuth: '...',</span>
+<span class="fragment">    payload: '...' }
+)</span><span class="fragment">.then(() => {
+  console.log('Message sent.');
+});</span>
+</code></pre>
+<!-- <img src="images/push-notification-6.png"> -->
  						<aside class="notes">
  							Using node web-push library, but there are lots of others.
  							There's some fiddly encryption you have to do, so it's best to just use a library.
@@ -1628,7 +1647,17 @@ navigator.serviceWorker.ready.then(reg => {</span>
  						<h3>3. Receive the message</h3>
  					</section>
  					<section>
- 						<img src="images/push-notification-7.png">
+						<pre><code data-trim data-noescape class="javascript">
+<span class="fragment">//meanwhile, back in our service worker
+self.addEventListener('push', function(e) {</span>
+<span class="fragment">  e.waitUntil(
+    self.registration.showNotification(</span>
+<span class="fragment">      "Schedule change",
+      { body: e.body.json().message, icon: '...' }
+    )
+  )
+});</span>
+</code></pre>
  						<aside class="notes">
  							Listen for the push event, display a notification.
  							The notification API allows you to add action buttons, and it returns a promise so
